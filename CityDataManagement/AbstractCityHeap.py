@@ -28,7 +28,7 @@ class AbstractCityHeap(ABC):
     The root is located at index 0, so it`s children must be on Index 1 and 2 and so on...
     """
 
-    heapStorage: List[City] = [0]  # empty List of City Objects
+    heapStorage: List[City] = []  # empty List of City Objects
     maximumHeapCapacity = 0
     currentHeapLastIndex = 0  # current last Index of the Heap based on the inserted City Objects, this is also the current Size of the Heap
     rawCityData: List[City]
@@ -113,48 +113,43 @@ class AbstractCityHeap(ABC):
         """
         Insert a single City into the Heap.
         """
-
-        if self.check_if_heap_is_full():
-            return
-
         self.heapStorage.append(city)
+
         self.currentHeapLastIndex += 1
 
         if self.recursive:
-            self.heapify_up_recursive(self.currentHeapLastIndex - 1)
+            self.heapify_up_recursive(self.currentHeapLastIndex-1)
         else:
             self.heapify_up_iterative()
 
     def build_heap_via_floyd(self):
         """
-        Build a Heap via Floyds Heap Construction Algorithm from a unsorted List Of Cities.
+        Build a Heap via Floyds Heap Construction Algorithm from an unsorted List Of Cities.
         """
 
     def get_root_city(self):
         """
         Return the City at the Root
         """
-
-        return self.heapStorage[0]
+        return self.heapStorage[0].name
 
     def get_parent_index(self, index):
         """
         Return the index of the parent node. 
         """
-
-        return (index - 1) // 2
+        return (index-1)//2
 
     def get_left_child_index(self, index):
         """
         Return the index of the left child. 
         """
-        return 2 * index + 1
+        return 2*index + 1
 
     def get_right_child_index(self, index):
         """
         Return the index of the right child. 
         """
-        return 2 * index + 2
+        return 2*index + 2
 
     def has_parent(self, index) -> bool:
         """
@@ -164,15 +159,10 @@ class AbstractCityHeap(ABC):
 
             False   = No parent
         """
-        """if len(self.heapStorage)-1 >= self.get_parent_index(index) >= 0:
-            True
-        else:
-            False"""
-
         if index == 0:
-            False
+            return False
         else:
-            True
+            return True
 
     def has_left_child(self, index):
         """
@@ -186,14 +176,10 @@ class AbstractCityHeap(ABC):
         -----
         The Index of the Child can be used for this purpose.
         """
-        """if len(self.heapStorage) - 1 >= self.get_left_child_index(index) >= 0:
-            True
-        else:
-            False"""
         if self.get_left_child_index(index) < self.maximumHeapCapacity:
-            True
+            return True
         else:
-            False
+            return False
 
     def has_right_child(self, index):
         """
@@ -207,15 +193,10 @@ class AbstractCityHeap(ABC):
         -----
         The Index of the Child can be used for this purpose.
         """
-
-        """if len(self.heapStorage) - 1 >= self.get_right_child_index(index) >= 0:
-            True
-        else:
-            False"""
         if self.get_right_child_index(index) < self.maximumHeapCapacity:
-            True
+            return True
         else:
-            False
+            return False
 
     def get_city_population(self, index):
         """
@@ -243,6 +224,7 @@ class AbstractCityHeap(ABC):
         """
         return self.get_city_population(self.get_left_child_index(index))
 
+
     def get_right_child_population(self, index):
         """
 
@@ -261,20 +243,18 @@ class AbstractCityHeap(ABC):
 
             False   = Not full
         """
-
-        if self.currentHeapLastIndex == self.maximumHeapCapacity:
-            return True
-        else:
-            return False
+        return len(self.heapStorage) == self.maximumHeapCapacity
 
     def swap_nodes(self, fst_node_index, sec_node_index):
         """
         Swap two nodes specified by their index.
         """
+        temp = self.heapStorage[sec_node_index]
 
-        temp = self.heapStorage[fst_node_index]
-        self.heapStorage[fst_node_index] = self.heapStorage[sec_node_index]
-        self.heapStorage[sec_node_index] = temp
+        self.heapStorage[sec_node_index] = self.heapStorage[fst_node_index]
+        self.heapStorage[fst_node_index] = temp
+
+
 
     def get_heap_data(self) -> List[City]:
         """
