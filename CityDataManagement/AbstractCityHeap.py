@@ -113,8 +113,6 @@ class AbstractCityHeap(ABC):
         """
         Insert a single City into the Heap.
         """
-        # TODO: implement me!
-        ...
 
         if self.check_if_heap_is_full():
             return
@@ -127,21 +125,15 @@ class AbstractCityHeap(ABC):
         else:
             self.heapify_up_iterative()
 
-
-
     def build_heap_via_floyd(self):
         """
         Build a Heap via Floyds Heap Construction Algorithm from a unsorted List Of Cities.
         """
-        # TODO: implement me!
-        ...
 
     def get_root_city(self):
         """
         Return the City at the Root
         """
-        # TODO: implement me!
-        ...
 
         return self.heapStorage[0]
 
@@ -149,25 +141,19 @@ class AbstractCityHeap(ABC):
         """
         Return the index of the parent node. 
         """
-        # TODO: implement me!
-        ...
 
-        return (index-1) // 2
+        return (index - 1) // 2
 
     def get_left_child_index(self, index):
         """
         Return the index of the left child. 
         """
-        # TODO: implement me!
-        ...
         return 2 * index + 1
 
     def get_right_child_index(self, index):
         """
         Return the index of the right child. 
         """
-        # TODO: implement me!
-        ...
         return 2 * index + 2
 
     def has_parent(self, index) -> bool:
@@ -178,8 +164,6 @@ class AbstractCityHeap(ABC):
 
             False   = No parent
         """
-        # TODO: implement me!
-        ...
         """if len(self.heapStorage)-1 >= self.get_parent_index(index) >= 0:
             True
         else:
@@ -202,8 +186,6 @@ class AbstractCityHeap(ABC):
         -----
         The Index of the Child can be used for this purpose.
         """
-        # TODO: implement me!
-        ...
         """if len(self.heapStorage) - 1 >= self.get_left_child_index(index) >= 0:
             True
         else:
@@ -225,8 +207,7 @@ class AbstractCityHeap(ABC):
         -----
         The Index of the Child can be used for this purpose.
         """
-        # TODO: implement me!
-        ...
+
         """if len(self.heapStorage) - 1 >= self.get_right_child_index(index) >= 0:
             True
         else:
@@ -240,8 +221,6 @@ class AbstractCityHeap(ABC):
         """
         Return the Population of a City with the given index in the heap.
         """
-        # TODO: implement me!
-        ...
         return self.heapStorage[index].population
 
     def get_parent_population(self, index):
@@ -252,8 +231,6 @@ class AbstractCityHeap(ABC):
         -----
         We need the position of the parent in the StorageArray to extract the population from this position.
         """
-        # TODO: implement me!
-        ...
         return self.get_city_population(self.get_parent_index(index))
 
     def get_left_child_population(self, index):
@@ -264,8 +241,6 @@ class AbstractCityHeap(ABC):
         -----
         We need the position of the child in the StorageArray to extract the population from this position.
         """
-        # TODO: implement me!
-        ...
         return self.get_city_population(self.get_left_child_index(index))
 
     def get_right_child_population(self, index):
@@ -276,8 +251,6 @@ class AbstractCityHeap(ABC):
         -----
         We need the position of the child in the StorageArray to extract the population from this position.
         """
-        # TODO: implement me!
-        ...
         return self.get_city_population(self.get_right_child_index(index))
 
     def check_if_heap_is_full(self):
@@ -288,8 +261,6 @@ class AbstractCityHeap(ABC):
 
             False   = Not full
         """
-        # TODO: implement me!
-        ...
 
         if self.currentHeapLastIndex == self.maximumHeapCapacity:
             return True
@@ -300,8 +271,7 @@ class AbstractCityHeap(ABC):
         """
         Swap two nodes specified by their index.
         """
-        # TODO: implement me!
-        ...
+
         temp = self.heapStorage[fst_node_index]
         self.heapStorage[fst_node_index] = self.heapStorage[sec_node_index]
         self.heapStorage[sec_node_index] = temp
