@@ -113,6 +113,8 @@ class AbstractCityHeap(ABC):
         """
         Insert a single City into the Heap.
         """
+        if self.currentHeapLastIndex > self.maximumHeapCapacity:
+            raise Exception("No more space")
         self.heapStorage.append(city)
 
         self.currentHeapLastIndex += 1
