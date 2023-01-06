@@ -118,7 +118,7 @@ class AbstractCityHeap(ABC):
         self.currentHeapLastIndex += 1
 
         if self.recursive:
-            self.heapify_up_recursive(self.currentHeapLastIndex-1)
+            self.heapify_up_recursive(self.currentHeapLastIndex - 1)
         else:
             self.heapify_up_iterative()
 
@@ -131,25 +131,25 @@ class AbstractCityHeap(ABC):
         """
         Return the City at the Root
         """
-        return self.heapStorage[0].name
+        return self.heapStorage[0]
 
     def get_parent_index(self, index):
         """
         Return the index of the parent node. 
         """
-        return (index-1)//2
+        return (index - 1) // 2
 
     def get_left_child_index(self, index):
         """
         Return the index of the left child. 
         """
-        return 2*index + 1
+        return 2 * index + 1
 
     def get_right_child_index(self, index):
         """
         Return the index of the right child. 
         """
-        return 2*index + 2
+        return 2 * index + 2
 
     def has_parent(self, index) -> bool:
         """
@@ -224,7 +224,6 @@ class AbstractCityHeap(ABC):
         """
         return self.get_city_population(self.get_left_child_index(index))
 
-
     def get_right_child_population(self, index):
         """
 
@@ -253,8 +252,6 @@ class AbstractCityHeap(ABC):
 
         self.heapStorage[sec_node_index] = self.heapStorage[fst_node_index]
         self.heapStorage[fst_node_index] = temp
-
-
 
     def get_heap_data(self) -> List[City]:
         """

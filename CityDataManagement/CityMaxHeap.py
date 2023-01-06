@@ -25,15 +25,12 @@ class CityMaxHeap(AbstractCityHeap):
         """
         Establish heap conditions for a Max-Heap iterative upwards.
         """
-        # TODO: implement me!
-        ...
-
-        """i = self.currentHeapLastIndex - 1
+        i = self.currentHeapLastIndex - 1
         while self.has_parent(i):
             p = self.get_parent_index(i)
             if self.get_city_population(i) > self.get_parent_population(i):
-                self.swap(i, p)
-                i = p"""
+                self.swap_nodes(i,p)
+                i = p
 
     def heapify_up_recursive(self, index):
         """
@@ -54,8 +51,19 @@ class CityMaxHeap(AbstractCityHeap):
         """
         Establish heap conditions for a Max-Heap iterative downwards.
         """
-        # TODO: implement me!
-        ...
+        i = 0
+        while self.has_left_child(i):
+            BiggestChildIndex = self.get_left_child_index(i)
+
+            if self.has_right_child(i) and self.get_right_child_population(i) > self.get_left_child_population(i):
+                BiggestChildIndex = self.get_right_child_index(i)
+
+            if self.get_city_population(BiggestChildIndex) > self.get_city_population(i):
+                self.swap_nodes(i, BiggestChildIndex)
+                i = BiggestChildIndex
+            else:
+                return
+
 
     def heapify_down_recursive(self, index):
         """
@@ -68,5 +76,9 @@ class CityMaxHeap(AbstractCityHeap):
         """
         Remove a City from the Max-Heap
         """
-        # TODO: implement me!
-        ...
+        root = self.heapStorage[0]
+        print("Old root:"+root)
+        self.heapStorage[0] = self.heapStorage[-1]
+        self.heapStorage.pop()
+        self.heapify_down_iterative()
+        print("New root:"+self.heapStorage[0])
