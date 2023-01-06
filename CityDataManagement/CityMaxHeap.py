@@ -25,7 +25,8 @@ class CityMaxHeap(AbstractCityHeap):
         """
         Establish heap conditions for a Max-Heap iterative upwards.
         """
-        i = self.currentHeapLastIndex - 1
+        #i = self.currentHeapLastIndex - 1
+        i = len(self.heapStorage)- 1
         while self.has_parent(i):
             p = self.get_parent_index(i)
             if self.get_city_population(i) > self.get_parent_population(i):
@@ -50,8 +51,6 @@ class CityMaxHeap(AbstractCityHeap):
         Establish heap conditions for a Max-Heap via Floyds Heap Construction Algorithmus.
 
         """
-        # TODO: implement me!
-        ...
 
     def heapify_down_iterative(self):
         """
@@ -98,4 +97,5 @@ class CityMaxHeap(AbstractCityHeap):
         self.heapStorage[0] = self.heapStorage[-1]
         self.heapStorage.pop()
         self.heapify_down_iterative()
-        print("New root:"+self.heapStorage[0].name)
+        print("New root:"+self.get_root_city().name)
+        return root
