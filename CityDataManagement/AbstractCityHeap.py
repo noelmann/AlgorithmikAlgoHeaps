@@ -129,11 +129,13 @@ class AbstractCityHeap(ABC):
         Build a Heap via Floyds Heap Construction Algorithm from an unsorted List Of Cities.
         """
         self.heapStorage = self.rawCityData
-        self.currentHeapLastIndex = self.maximumHeapCapacity - 1
-        for item in self.heapStorage:
-            if self.has_parent(self.currentHeapLastIndex):
-                self.heapify_floyd(self.get_parent_index(self.currentHeapLastIndex), len(self.heapStorage))
-            self.currentHeapLastIndex -= 1
+        self.currentHeapLastIndex = len(self.heapStorage)
+        visited = set()
+        for index, item in enumerate(self.heapStorage):
+            if self.has_parent(index) and not visited.__contains__(
+                    self.heapStorage[self.get_parent_index(self.currentHeapLastIndex - index)]):
+                visited.add(self.heapStorage[self.get_parent_index(self.currentHeapLastIndex - index)])
+                self.heapify_floyd(self.get_parent_index(self.currentHeapLastIndex - index), len(self.heapStorage))
 
     def get_root_city(self):
         """
