@@ -114,7 +114,7 @@ class AbstractCityHeap(ABC):
         Insert a single City into the Heap.
         """
         if self.currentHeapLastIndex > self.maximumHeapCapacity:
-            raise Exception("No more space")
+            raise Exception("Heap ist voll!")
         self.heapStorage.append(city)
 
         self.currentHeapLastIndex += 1
@@ -128,6 +128,12 @@ class AbstractCityHeap(ABC):
         """
         Build a Heap via Floyds Heap Construction Algorithm from an unsorted List Of Cities.
         """
+        self.heapStorage = self.rawCityData
+        self.currentHeapLastIndex = self.maximumHeapCapacity - 1
+        for item in self.heapStorage:
+            if self.has_parent(self.currentHeapLastIndex):
+                self.heapify_floyd(self.get_parent_index(self.currentHeapLastIndex), len(self.heapStorage))
+            self.currentHeapLastIndex -= 1
 
     def get_root_city(self):
         """
