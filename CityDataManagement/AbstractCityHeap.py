@@ -113,7 +113,7 @@ class AbstractCityHeap(ABC):
         """
         Insert a single City into the Heap.
         """
-        if self.currentHeapLastIndex > self.maximumHeapCapacity:
+        if self.check_if_heap_is_full():
             raise Exception("Heap ist voll!")
         self.heapStorage.append(city)
 
@@ -252,7 +252,7 @@ class AbstractCityHeap(ABC):
 
             False   = Not full
         """
-        return len(self.heapStorage) == self.maximumHeapCapacity
+        return self.currentHeapLastIndex > self.maximumHeapCapacity
 
     def swap_nodes(self, fst_node_index, sec_node_index):
         """
